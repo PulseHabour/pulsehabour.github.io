@@ -191,7 +191,7 @@ h2 {
   border-color: transparent;
 }
 .tile-lead > div { max-width: 62ch; }
-.tile-stack { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.tile-stack { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
 .tile h3 {
   margin: 0;
   color: var(--ink);
@@ -302,7 +302,7 @@ footer { border-top: 1px solid var(--hairline); padding: 56px 0; background: var
   <section class="band band-soft" id="projects" aria-labelledby="projects-title">
     <div class="shell">
       <h2 id="projects-title">Public projects</h2>
-      <p class="band-intro">Three repositories, all open on GitHub.</p>
+      <p class="band-intro">Open on GitHub and the VS Code Marketplace.</p>
       <div class="bento">
         <a class="tile tile-lead" href="https://github.com/PulseHabour/NativeCheck">
           <div>
@@ -330,6 +330,13 @@ footer { border-top: 1px solid var(--hairline); padding: 56px 0; background: var
               <p>The server side of CfxRun. Players launch straight into a Cfx server.</p>
             </div>
             <span class="go"><span>Open repository</span><span aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="tile" href="https://marketplace.visualstudio.com/items?itemName=PulseHabour.cfxrun">
+            <div>
+              <h3>CFX Run</h3>
+              <p>The editor side of CfxRun. A VS Code extension with tools for remote debugging in Cfx games.</p>
+            </div>
+            <span class="go"><span>Open on Marketplace</span><span aria-hidden="true">&rarr;</span></span>
           </a>
         </div>
       </div>
