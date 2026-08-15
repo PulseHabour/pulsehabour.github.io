@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PulseHabour</title>
+<meta name="description" content="Tooling for the RAGE engine and the FiveM/Cfx ecosystem.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>&#9881;</text></svg>">
+<style>
+  :root {
+    --bg: #fbfaf8;
+    --surface: #ffffff;
+    --border: #e4e0d8;
+    --text: #1c1a17;
+    --muted: #6b655c;
+    --accent: #a8620c;
+    --accent-soft: #f5ede1;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14130f;
+      --surface: #1c1a16;
+      --border: #2e2a23;
+      --text: #edeae4;
+      --muted: #9b948a;
+      --accent: #e0a460;
+      --accent-soft: #2a2119;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0 1.5rem;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  main { max-width: 46rem; margin: 0 auto; padding: 5rem 0 4rem; }
+  a { color: var(--accent); }
+
+  header { margin-bottom: 4rem; }
+  h1 {
+    margin: 0 0 .75rem;
+    font-size: clamp(2rem, 6vw, 2.75rem);
+    letter-spacing: -.02em;
+    line-height: 1.1;
+  }
+  .tagline { margin: 0; max-width: 34rem; color: var(--muted); font-size: 1.0625rem; }
+
+  h2 {
+    margin: 0 0 1.25rem;
+    font-size: .8125rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  section { margin-bottom: 3.5rem; }
+
+  .projects { display: grid; gap: .875rem; }
+  .card {
+    display: block;
+    padding: 1.125rem 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  a.card:hover, a.card:focus-visible {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+  .card h3 {
+    margin: 0 0 .3rem;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    letter-spacing: -.01em;
+  }
+  a.card h3 { color: var(--accent); }
+  .card p { margin: 0; color: var(--muted); font-size: .9375rem; }
+
+  .tag {
+    display: inline-block;
+    margin-left: .5rem;
+    padding: .1rem .45rem;
+    border-radius: 4px;
+    background: var(--accent-soft);
+    color: var(--muted);
+    font-size: .6875rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    vertical-align: 2px;
+  }
+
+  .stack { margin: 0; color: var(--muted); }
+
+  footer {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 2rem 0 4rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: .875rem;
+  }
+  footer p { margin: 0 0 .5rem; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>PulseHabour</h1>
+    <p class="tagline">
+      I build tooling for the RAGE engine and the FiveM/Cfx ecosystem — file format
+      explorers, native reference tools, and the small utilities that make modding
+      less painful.
+    </p>
+  </header>
+
+  <section>
+    <h2>Public projects</h2>
+    <div class="projects">
+      <a class="card" href="https://github.com/PulseHabour/NativeCheck">
+        <h3>NativeCheck</h3>
+        <p>A quick browser-based reference for looking up RAGE natives.</p>
+      </a>
+      <a class="card" href="https://github.com/PulseHabour/NativeViewer">
+        <h3>NativeViewer</h3>
+        <p>A Python companion for browsing native definitions.</p>
+      </a>
+      <a class="card" href="https://github.com/PulseHabour/CfxRun-Resource">
+        <h3>CfxRun-Resource</h3>
+        <p>The server-side resource for CfxRun, for launching straight into Cfx servers.</p>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>In the works</h2>
+    <div class="projects">
+      <div class="card">
+        <h3>YARGE <span class="tag">Pre-alpha</span></h3>
+        <p>
+          Yet Another RAGE Editor — a cross-platform RPF explorer and world editor for
+          RAGE-engine games, built clean-room from public format specifications.
+        </p>
+      </div>
+      <div class="card">
+        <h3>FiveM Stats</h3>
+        <p>Server statistics tracking, Node and Postgres.</p>
+      </div>
+      <div class="card">
+        <h3>LuminHub</h3>
+        <p>A small Python service with TLS.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Tech I reach for</h2>
+    <p class="stack">JavaScript / TypeScript · Node.js · Python · Lua · C#</p>
+  </section>
+</main>
+
+<footer>
+  <p>Open an issue on any repo, or find me at <a href="https://github.com/PulseHabour">github.com/PulseHabour</a>.</p>
+  <p>Fan tooling only — not affiliated with Rockstar Games, Take-Two Interactive, or the Cfx.re project.</p>
+</footer>
+</body>
+</html>
