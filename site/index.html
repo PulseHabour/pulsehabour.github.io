@@ -111,7 +111,9 @@ a:hover { color: var(--primary-deep); }
 .hero { position: relative; overflow: hidden; }
 .mesh {
   position: absolute;
-  inset: -60px -10% auto -10%;
+  top: -60px;
+  left: -10%;
+  width: 120%;
   height: 620px;
   opacity: var(--mesh-opacity);
   pointer-events: none;
@@ -164,6 +166,7 @@ h2 {
   letter-spacing: -.022em;
 }
 .band-intro { margin: 0 0 32px; max-width: 56ch; color: var(--ink-mute); font-size: 16px; }
+#works-title { margin-bottom: 32px; }
 
 .bento { display: grid; gap: 20px; }
 .tile {
@@ -335,7 +338,6 @@ footer { border-top: 1px solid var(--hairline); padding: 56px 0; background: var
   <section class="band band-warm" aria-labelledby="works-title">
     <div class="shell">
       <h2 id="works-title">In the works</h2>
-      <p class="band-intro">Not public yet.</p>
       <div class="works">
         <article class="work">
           <h3>YARGE</h3>
