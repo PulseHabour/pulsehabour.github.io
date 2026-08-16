@@ -430,7 +430,7 @@ footer { border-top: 1px solid var(--hairline); padding: 56px 0; background: var
 
 <script>
 (function () {
-  var ID = 'G-2PEKB4NDYM';
+  var ID = 'GTM-WCMZ2XQ3';
   var KEY = 'ph-analytics-consent';
 
   function remembered() {
@@ -440,6 +440,10 @@ footer { border-top: 1px solid var(--hairline); padding: 56px 0; background: var
     try { localStorage.setItem(KEY, value); } catch (e) {}
   }
 
+  // Loads Google Tag Manager. Only ever called once the visitor has accepted,
+  // so consent is granted before gtm.js is fetched. There is deliberately no
+  // <noscript> iframe: consent requires JS, so a no-JS visitor can never have
+  // agreed, and the iframe would load the container regardless.
   function loadAnalytics() {
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
@@ -449,12 +453,11 @@ footer { border-top: 1px solid var(--hairline); padding: 56px 0; background: var
       ad_personalization: 'denied',
       analytics_storage: 'granted'
     });
+    dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
     var s = document.createElement('script');
     s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ID;
+    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + ID;
     document.head.appendChild(s);
-    gtag('js', new Date());
-    gtag('config', ID);
   }
 
   var choice = remembered();
