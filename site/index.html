@@ -270,7 +270,7 @@ footer { border-top: 1px solid var(--hairline); padding: 56px 0; background: var
 }
 .consent[data-show] { display: flex; }
 .consent p { flex: 1 1 260px; margin: 0; }
-.consent .actions { display: flex; gap: 8px; }
+.consent .actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .consent .btn { min-height: 34px; padding: 6px 14px; font-size: 14px; cursor: pointer; font-family: inherit; }
 
 @media (max-width: 860px) {
@@ -421,9 +421,10 @@ footer { border-top: 1px solid var(--hairline); padding: 56px 0; background: var
 </footer>
 
 <div class="consent" id="consent" role="region" aria-label="Analytics consent" hidden>
-  <p>This site uses Google Analytics to count visits. Nothing is loaded or stored unless you accept.</p>
+  <p>This site uses Google Analytics to count visits, and can set advertising cookies used for retargeting. Nothing is loaded or stored until you choose.</p>
   <div class="actions">
-    <button type="button" class="btn btn-primary" id="consent-accept">Accept</button>
+    <button type="button" class="btn btn-primary" id="consent-all">Accept all</button>
+    <button type="button" class="btn btn-secondary" id="consent-analytics">Analytics only</button>
     <button type="button" class="btn btn-secondary" id="consent-decline">Decline</button>
   </div>
 </div>
@@ -433,8 +434,16 @@ footer { border-top: 1px solid var(--hairline); padding: 56px 0; background: var
   var ID = 'GTM-WCMZ2XQ3';
   var KEY = 'ph-analytics-consent';
 
+  // Stored values: 'all' | 'analytics' | 'denied'. 'granted' is the pre-ads
+  // value — those visitors agreed to analytics only, so honour that rather
+  // than asking again or silently upgrading them to advertising.
   function remembered() {
-    try { return localStorage.getItem(KEY); } catch (e) { return null; }
+    var v;
+    try { v = localStorage.getItem(KEY); } catch (e) { return null; }
+    if (v === 'all') return { analytics: true, ads: true };
+    if (v === 'analytics' || v === 'granted') return { analytics: true, ads: false };
+    if (v === 'denied') return { analytics: false, ads: false };
+    return null;
   }
   function remember(value) {
     try { localStorage.setItem(KEY, value); } catch (e) {}
@@ -444,14 +453,15 @@ footer { border-top: 1px solid var(--hairline); padding: 56px 0; background: var
   // so consent is granted before gtm.js is fetched. There is deliberately no
   // <noscript> iframe: consent requires JS, so a no-JS visitor can never have
   // agreed, and the iframe would load the container regardless.
-  function loadAnalytics() {
+  function loadAnalytics(consent) {
+    var ads = consent.ads ? 'granted' : 'denied';
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('consent', 'default', {
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-      analytics_storage: 'granted'
+      ad_storage: ads,
+      ad_user_data: ads,
+      ad_personalization: ads,
+      analytics_storage: consent.analytics ? 'granted' : 'denied'
     });
     dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
     var s = document.createElement('script');
@@ -461,23 +471,30 @@ footer { border-top: 1px solid var(--hairline); padding: 56px 0; background: var
   }
 
   var choice = remembered();
-  if (choice === 'granted') { loadAnalytics(); return; }
-  if (choice === 'denied') { return; }
+  if (choice) {
+    if (choice.analytics || choice.ads) { loadAnalytics(choice); }
+    return;
+  }
 
   var bar = document.getElementById('consent');
   bar.hidden = false;
   bar.setAttribute('data-show', '');
 
-  document.getElementById('consent-accept').addEventListener('click', function () {
-    remember('granted');
+  function decide(stored, consent) {
+    remember(stored);
     bar.hidden = true;
     bar.removeAttribute('data-show');
-    loadAnalytics();
+    if (consent.analytics || consent.ads) { loadAnalytics(consent); }
+  }
+
+  document.getElementById('consent-all').addEventListener('click', function () {
+    decide('all', { analytics: true, ads: true });
+  });
+  document.getElementById('consent-analytics').addEventListener('click', function () {
+    decide('analytics', { analytics: true, ads: false });
   });
   document.getElementById('consent-decline').addEventListener('click', function () {
-    remember('denied');
-    bar.hidden = true;
-    bar.removeAttribute('data-show');
+    decide('denied', { analytics: false, ads: false });
   });
 })();
 </script>
