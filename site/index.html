@@ -248,6 +248,31 @@ footer { border-top: 1px solid var(--hairline); padding: 56px 0; background: var
 .langs { margin: 0; color: var(--ink-mute); font-size: 13px; letter-spacing: -.005em; }
 .fine { margin: 0; max-width: 58ch; color: var(--ink-mute); font-size: 13px; line-height: 1.5; }
 
+/* Consent bar — hidden until JS decides it's needed */
+.consent {
+  position: fixed;
+  z-index: 10;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  display: none;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  width: min(680px, calc(100% - 32px));
+  padding: 14px 18px;
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  background: var(--canvas);
+  box-shadow: var(--shadow-2);
+  color: var(--ink-2);
+  font-size: 14px;
+}
+.consent[data-show] { display: flex; }
+.consent p { flex: 1 1 260px; margin: 0; }
+.consent .actions { display: flex; gap: 8px; }
+.consent .btn { min-height: 34px; padding: 6px 14px; font-size: 14px; cursor: pointer; font-family: inherit; }
+
 @media (max-width: 860px) {
   .hero-body { grid-template-columns: 1fr; gap: 32px; }
   .hero-aside { align-self: start; }
@@ -394,6 +419,65 @@ footer { border-top: 1px solid var(--hairline); padding: 56px 0; background: var
     <p class="fine">Not affiliated with Rockstar Games, Take-Two Interactive, or the Cfx.re project.</p>
   </div>
 </footer>
+
+<div class="consent" id="consent" role="region" aria-label="Analytics consent" hidden>
+  <p>This site uses Google Analytics to count visits. Nothing is loaded or stored unless you accept.</p>
+  <div class="actions">
+    <button type="button" class="btn btn-primary" id="consent-accept">Accept</button>
+    <button type="button" class="btn btn-secondary" id="consent-decline">Decline</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var ID = 'G-2PEKB4NDYM';
+  var KEY = 'ph-analytics-consent';
+
+  function remembered() {
+    try { return localStorage.getItem(KEY); } catch (e) { return null; }
+  }
+  function remember(value) {
+    try { localStorage.setItem(KEY, value); } catch (e) {}
+  }
+
+  function loadAnalytics() {
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'granted'
+    });
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ID;
+    document.head.appendChild(s);
+    gtag('js', new Date());
+    gtag('config', ID);
+  }
+
+  var choice = remembered();
+  if (choice === 'granted') { loadAnalytics(); return; }
+  if (choice === 'denied') { return; }
+
+  var bar = document.getElementById('consent');
+  bar.hidden = false;
+  bar.setAttribute('data-show', '');
+
+  document.getElementById('consent-accept').addEventListener('click', function () {
+    remember('granted');
+    bar.hidden = true;
+    bar.removeAttribute('data-show');
+    loadAnalytics();
+  });
+  document.getElementById('consent-decline').addEventListener('click', function () {
+    remember('denied');
+    bar.hidden = true;
+    bar.removeAttribute('data-show');
+  });
+})();
+</script>
 
 </body>
 </html>
