@@ -1,0 +1,23 @@
+# PulseHabour
+
+> Solo developer building tooling for the RAGE engine and the FiveM/Cfx.re ecosystem:
+> file format explorers, native reference tools, and developer utilities. Fan tooling
+> only — not affiliated with Rockstar Games, Take-Two Interactive, or the Cfx.re project.
+
+## Public projects
+
+- [CFX Run](https://marketplace.visualstudio.com/items?itemName=PulseHabour.cfxrun): VS Code extension providing tools for remote debugging in Cfx games. The editor side of CfxRun.
+- [NativeCheck](https://github.com/PulseHabour/NativeCheck): Browser-based reference for looking up RAGE natives by name and reading their signatures.
+- [NativeViewer](https://github.com/PulseHabour/NativeViewer): Python companion for browsing native definitions on the desktop.
+- [CfxRun-Resource](https://github.com/PulseHabour/CfxRun-Resource): Server-side resource for CfxRun, letting players launch straight into a Cfx server.
+
+## In development
+
+- YARGE (Yet Another RAGE Editor): cross-platform RPF explorer and world editor for RAGE-engine games. Pre-alpha, not yet public.
+- FiveM Stats: server statistics tracking, built on Node and Postgres. Not yet public.
+- LuminHub: small Python service, TLS end to end. Not yet public.
+
+## Contact
+
+- [GitHub](https://github.com/PulseHabour)
+- [Discord](https://discord.gg/H3aQQ7VCaY)
