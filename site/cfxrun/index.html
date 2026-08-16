@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CFX Run — Copilot Chat for FiveM and RedM clients</title>
+<meta name="description" content="CFX Run lets GitHub Copilot Chat execute JavaScript inside a running FiveM or RedM game client, for debugging and development.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<style>
+:root {
+  --primary: #2a6c92;
+  --primary-deep: #1f5878;
+  --ink: #16262f;
+  --ink-2: #33474f;
+  --ink-mute: #5c6f77;
+  --canvas: #fbfaf7;
+  --canvas-soft: #f2f1eb;
+  --hairline: #e4e0d7;
+  --warn-bg: #fdf3e3;
+  --warn-border: #e6c68a;
+  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #86bede;
+    --primary-deep: #a8d3ea;
+    --ink: #eef2f2;
+    --ink-2: #c4cdd0;
+    --ink-mute: #97a4a9;
+    --canvas: #0e1417;
+    --canvas-soft: #121a1e;
+    --hairline: #232d32;
+    --warn-bg: #241d12;
+    --warn-border: #5c4726;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink-2);
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
+}
+a { color: var(--primary); }
+a:hover { color: var(--primary-deep); }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
+.shell { max-width: 46rem; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); }
+.back { display: inline-block; margin: 40px 0 0; font-size: 15px; text-decoration: none; }
+h1 {
+  margin: 24px 0 6px;
+  color: var(--ink);
+  font-size: clamp(32px, 5vw, 44px);
+  font-weight: 300;
+  letter-spacing: -.025em;
+  line-height: 1.1;
+}
+.lead { margin: 0 0 28px; color: var(--ink); font-size: 19px; line-height: 1.5; }
+h2 {
+  margin: 40px 0 10px;
+  color: var(--ink);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -.015em;
+}
+ul { padding-left: 20px; }
+li { margin-bottom: 6px; }
+code { background: var(--canvas-soft); padding: 1px 5px; border-radius: 4px; font-family: var(--mono); font-size: 14px; }
+pre {
+  overflow-x: auto;
+  margin: 14px 0;
+  padding: 14px 16px;
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  background: var(--canvas-soft);
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.5;
+}
+pre code { background: none; padding: 0; font-size: inherit; }
+.links { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0 0; padding: 0; list-style: none; }
+.links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 8px 18px;
+  border: 1px solid var(--primary);
+  border-radius: 9999px;
+  font-size: 15px;
+  text-decoration: none;
+}
+.links a.solid { background: var(--primary); border-color: var(--primary); color: var(--canvas); }
+.warn {
+  margin: 20px 0;
+  padding: 14px 16px;
+  border: 1px solid var(--warn-border);
+  border-radius: 8px;
+  background: var(--warn-bg);
+  font-size: 15px;
+}
+.warn strong { color: var(--ink); font-weight: 500; }
+.pair { display: grid; gap: 16px; margin: 16px 0 0; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.pair div { padding: 18px 20px; border: 1px solid var(--hairline); border-radius: 10px; }
+.pair h3 { margin: 0 0 6px; color: var(--ink); font-size: 17px; font-weight: 400; }
+.pair p { margin: 0; font-size: 15px; }
+footer { margin: 56px 0 64px; padding-top: 24px; border-top: 1px solid var(--hairline); color: var(--ink-mute); font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="shell">
+
+<a class="back" href="/">&larr; pulsehabour.github.io</a>
+
+<h1>CFX Run</h1>
+<p class="lead">Let GitHub Copilot Chat run code inside a live FiveM or RedM client, so you can ask it questions about the running game instead of guessing.</p>
+
+<ul class="links">
+  <li><a class="solid" href="https://marketplace.visualstudio.com/items?itemName=PulseHabour.cfxrun">Install from the Marketplace</a></li>
+  <li><a href="https://github.com/PulseHabour/CfxRun-Resource">Server resource on GitHub</a></li>
+  <li><a href="https://discord.gg/H3aQQ7VCaY">Discord</a></li>
+</ul>
+
+<h2>What it does</h2>
+<p>CFX Run registers tools with Copilot Chat that execute JavaScript in a sandboxed context inside the game client. Copilot can then read real state out of a running session rather than reasoning about code in the abstract.</p>
+<ul>
+  <li>Execute JavaScript in the FiveM client environment</li>
+  <li>Run code in NUI/CEF contexts, for debugging interface work</li>
+  <li>Get and insert player coordinates, with or without heading</li>
+  <li>Debug over the network, against a client on another machine</li>
+</ul>
+<p>Tools are referenced in the chat message that uses them, for example:</p>
+<pre><code>@RunJSFiveMCode Get the player position</code></pre>
+
+<h2>Two halves</h2>
+<div class="pair">
+  <div>
+    <h3>The extension</h3>
+    <p>Installs into VS Code, registers the Copilot tools, and talks to the client over the CEF bridge.</p>
+  </div>
+  <div>
+    <h3>The resource</h3>
+    <p>Runs on your FiveM server and exposes the execution endpoint the extension calls. MIT licensed.</p>
+  </div>
+</div>
+<p>Both are required — the extension has nothing to talk to without the resource running on the server.</p>
+
+<h2>Before you use it</h2>
+<div class="warn">
+  <p><strong>This is a development tool, not a production one.</strong> The resource allows execution of any native function. That is exactly what makes it useful while debugging, and exactly why it should not be left running on a live server. Restrict access, or remove it, outside development.</p>
+</div>
+
+<h2>Debugging a client on another machine</h2>
+<p>Remote use means exposing the client's CEF DevTools port, which is bound to localhost by default. On Windows, allow the port through the firewall and proxy it to the loopback address:</p>
+<pre><code>netsh advfirewall firewall add rule name="CEF DevTools Port" ^
+  dir=in action=allow protocol=TCP localport=13172
+
+netsh interface portproxy add v4tov4 listenport=13172 ^
+  listenaddress=0.0.0.0 connectport=13172 connectaddress=127.0.0.1</code></pre>
+<p>Add the port proxy after the game client is running. If a proxy from a previous session is still bound, delete it before starting the game:</p>
+<pre><code>netsh interface portproxy delete v4tov4 listenport=13172 listenaddress=0.0.0.0</code></pre>
+<p>Opening a DevTools port to your network is a real exposure. Do it on a network you trust, and undo it when you are finished.</p>
+
+<h2>Current limitations</h2>
+<ul>
+  <li>No server-side code execution — client only</li>
+  <li>No simulated user input (keyboard, mouse, pad, joystick, touchpad)</li>
+  <li>Tools must be referenced explicitly in the chat message</li>
+</ul>
+<p>Server-side execution and user input support are both planned.</p>
+
+<h2>Getting help</h2>
+<p>Pull requests and issues are welcome on the <a href="https://github.com/PulseHabour/CfxRun-Resource">resource repository</a>. For questions, the <a href="https://discord.gg/H3aQQ7VCaY">Discord</a> is the fastest route.</p>
+
+<footer>
+  Fan tooling only — not affiliated with Rockstar Games, Take-Two Interactive, or the Cfx.re project.
+</footer>
+
+</div>
+</body>
+</html>
