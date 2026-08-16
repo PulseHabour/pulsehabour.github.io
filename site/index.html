@@ -245,6 +245,8 @@ footer { border-top: 1px solid var(--hairline); padding: 56px 0; background: var
 .foot a { font-size: 15px; }
 .foot-left { display: grid; gap: 6px; }
 .foot-links { display: flex; flex-wrap: wrap; gap: 20px; margin: 0; }
+.linkish { padding: 0; border: 0; background: none; color: var(--primary); font: inherit; font-size: 15px; cursor: pointer; }
+.linkish:hover { color: var(--primary-deep); }
 .langs { margin: 0; color: var(--ink-mute); font-size: 13px; letter-spacing: -.005em; }
 .fine { margin: 0; max-width: 58ch; color: var(--ink-mute); font-size: 13px; line-height: 1.5; }
 
@@ -413,6 +415,7 @@ footer { border-top: 1px solid var(--hairline); padding: 56px 0; background: var
       <p class="foot-links">
         <a href="https://github.com/PulseHabour">github.com/PulseHabour</a>
         <a href="https://discord.gg/H3aQQ7VCaY">Discord</a>
+        <button type="button" class="linkish" id="cookie-settings">Cookie settings</button>
       </p>
       <p class="langs">JavaScript / TypeScript, Node.js, Python, Lua, C#</p>
     </div>
@@ -470,21 +473,29 @@ footer { border-top: 1px solid var(--hairline); padding: 56px 0; background: var
     document.head.appendChild(s);
   }
 
-  var choice = remembered();
-  if (choice) {
-    if (choice.analytics || choice.ads) { loadAnalytics(choice); }
-    return;
-  }
-
   var bar = document.getElementById('consent');
-  bar.hidden = false;
-  bar.setAttribute('data-show', '');
+  var loaded = false;
 
-  function decide(stored, consent) {
-    remember(stored);
+  function showBar() {
+    bar.hidden = false;
+    bar.setAttribute('data-show', '');
+  }
+  function hideBar() {
     bar.hidden = true;
     bar.removeAttribute('data-show');
-    if (consent.analytics || consent.ads) { loadAnalytics(consent); }
+  }
+
+  // Changing your mind after the container has loaded can't be undone in
+  // place — scripts already running stay running. Reload so the new choice
+  // is applied from a clean page.
+  function decide(stored, consent) {
+    remember(stored);
+    hideBar();
+    if (loaded) { location.reload(); return; }
+    if (consent.analytics || consent.ads) {
+      loadAnalytics(consent);
+      loaded = true;
+    }
   }
 
   document.getElementById('consent-all').addEventListener('click', function () {
@@ -496,6 +507,17 @@ footer { border-top: 1px solid var(--hairline); padding: 56px 0; background: var
   document.getElementById('consent-decline').addEventListener('click', function () {
     decide('denied', { analytics: false, ads: false });
   });
+  document.getElementById('cookie-settings').addEventListener('click', showBar);
+
+  var choice = remembered();
+  if (choice) {
+    if (choice.analytics || choice.ads) {
+      loadAnalytics(choice);
+      loaded = true;
+    }
+    return;
+  }
+  showBar();
 })();
 </script>
 
