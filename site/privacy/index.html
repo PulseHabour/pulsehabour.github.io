@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy — PulseHabour</title>
+<meta name="description" content="What pulsehabour.github.io collects, what it doesn't, and how to change your mind.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<style>
+:root {
+  --primary: #2a6c92;
+  --primary-deep: #1f5878;
+  --ink: #16262f;
+  --ink-2: #33474f;
+  --ink-mute: #5c6f77;
+  --canvas: #fbfaf7;
+  --canvas-soft: #f2f1eb;
+  --hairline: #e4e0d7;
+  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #86bede;
+    --primary-deep: #a8d3ea;
+    --ink: #eef2f2;
+    --ink-2: #c4cdd0;
+    --ink-mute: #97a4a9;
+    --canvas: #0e1417;
+    --canvas-soft: #121a1e;
+    --hairline: #232d32;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink-2);
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
+}
+a { color: var(--primary); }
+a:hover { color: var(--primary-deep); }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
+.shell { max-width: 46rem; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); }
+.back { display: inline-block; margin: 40px 0 0; font-size: 15px; text-decoration: none; }
+h1 {
+  margin: 24px 0 4px;
+  color: var(--ink);
+  font-size: clamp(32px, 5vw, 44px);
+  font-weight: 300;
+  letter-spacing: -.025em;
+  line-height: 1.1;
+}
+.updated { margin: 0 0 40px; color: var(--ink-mute); font-size: 14px; }
+h2 {
+  margin: 40px 0 10px;
+  color: var(--ink);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -.015em;
+}
+p, li { font-size: 16px; }
+ul { padding-left: 20px; }
+li { margin-bottom: 6px; }
+.lead { color: var(--ink); font-size: 18px; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+th, td { padding: 10px 12px; border-bottom: 1px solid var(--hairline); text-align: left; vertical-align: top; }
+th { color: var(--ink); font-weight: 500; }
+code { background: var(--canvas-soft); padding: 1px 5px; border-radius: 4px; font-size: 14px; }
+footer { margin: 56px 0 64px; padding-top: 24px; border-top: 1px solid var(--hairline); color: var(--ink-mute); font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="shell">
+
+<a class="back" href="/">&larr; pulsehabour.github.io</a>
+
+<h1>Privacy</h1>
+<p class="updated">Last updated 16 August 2026</p>
+
+<p class="lead">This is a personal site with no accounts, no forms, and nothing to sign up for. By default it collects nothing about you at all.</p>
+
+<h2>If you don't consent, nothing is loaded</h2>
+<p>No analytics or advertising scripts run until you choose "Accept all" or "Analytics only" on the consent bar. If you decline, or simply ignore the bar, no third-party script is fetched, no cookie is set, and no request is made to Google from this site.</p>
+
+<h2>What gets stored either way</h2>
+<p>One item is stored locally to remember your choice, so you aren't asked on every visit:</p>
+<table>
+  <tr><th>Name</th><th>Type</th><th>Purpose</th></tr>
+  <tr><td><code>ph-analytics-consent</code></td><td>Browser local storage</td><td>Remembers whether you accepted analytics, advertising, both, or neither.</td></tr>
+</table>
+<p>It stays on your device, is never sent anywhere, and holds a single word. Clearing your browser storage removes it and you'll be asked again.</p>
+
+<h2>Analytics, if you accept</h2>
+<p>Accepting analytics loads Google Tag Manager, which loads Google Analytics 4. Google then receives, and sets cookies to record:</p>
+<ul>
+  <li>pages you view on this site and when</li>
+  <li>the referring site or search that brought you here</li>
+  <li>approximate location derived from your IP address (typically country or city level)</li>
+  <li>device, browser, and screen characteristics</li>
+</ul>
+<p>This is used only to see whether anyone reads the site and which projects draw interest. It is not used to identify you, and the data is not sold or shared with anyone else. How long it is kept is governed by the retention period set on the Google Analytics property; Google's default is 2 months and the maximum available is 14.</p>
+
+<h2>Advertising</h2>
+<p>Choosing "Accept all" additionally grants Google's advertising consent signals (<code>ad_storage</code>, <code>ad_user_data</code>, <code>ad_personalization</code>), which allow advertising cookies to be set and would permit retargeting.</p>
+<p><strong>No advertising or retargeting is running on this site today.</strong> The consent option exists so that it works correctly if it is ever added, rather than being bolted on afterwards. Choosing "Analytics only" declines all three signals.</p>
+
+<h2>Hosting</h2>
+<p>The site is hosted on GitHub Pages. Like any web host, GitHub receives your IP address and request details in order to serve the page, and handles that data under its own privacy statement. That happens for every visitor regardless of consent, because it is how the page reaches you at all.</p>
+
+<h2>Changing your mind</h2>
+<p>Select <strong>Cookie settings</strong> in the footer of the home page at any time. Withdrawing consent is exactly as easy as giving it: the page reloads and the analytics scripts are not loaded again. You can also clear cookies and site data for this domain in your browser.</p>
+
+<h2>Your rights</h2>
+<p>If you're in the UK or EU, you have the right to access, correct, or erase personal data relating to you, to object to processing, and to complain to your data protection authority. Because this site holds no account and no records of its own, requests about analytics data are generally best directed at Google, whose privacy policy and controls are at <a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a>. If you get in touch I'll help where I can.</p>
+
+<h2>Contact</h2>
+<p>Open an issue on any repository at <a href="https://github.com/PulseHabour" rel="noopener">github.com/PulseHabour</a>, or reach me on <a href="https://discord.gg/H3aQQ7VCaY" rel="noopener">Discord</a>.</p>
+
+<h2>Changes</h2>
+<p>If what the site collects changes, this page changes with it and the date above is updated.</p>
+
+<footer>
+  Fan tooling only — not affiliated with Rockstar Games, Take-Two Interactive, or the Cfx.re project.
+</footer>
+
+</div>
+</body>
+</html>
