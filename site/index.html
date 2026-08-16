@@ -170,6 +170,11 @@ h2 {
 .band-intro { margin: 0 0 32px; max-width: 56ch; color: var(--ink-mute); font-size: 16px; }
 #works-title { margin-bottom: 32px; }
 
+.prose { max-width: 64ch; }
+.prose p { margin: 0 0 18px; font-size: 17px; line-height: 1.6; }
+.prose p:last-child { margin-bottom: 0; }
+.prose strong { color: var(--ink); font-weight: 400; }
+
 .bento { display: grid; gap: 20px; }
 .tile {
   display: flex;
@@ -341,6 +346,18 @@ footer { border-top: 1px solid var(--hairline); padding: 56px 0; background: var
 </header>
 
 <main>
+  <section class="band" aria-labelledby="work-title">
+    <div class="shell">
+      <h2 id="work-title">What I work on</h2>
+      <div class="prose">
+        <p><strong>RAGE</strong> &mdash; the Rockstar Advanced Game Engine &mdash; is what Grand Theft Auto V and Red Dead Redemption 2 run on. Very little of it was ever documented for people outside Rockstar, so the community rebuilt that knowledge itself: archive formats mapped out byte by byte, thousands of native engine functions catalogued by hand, and a whole modification framework, Cfx.re, built on top to make FiveM and RedM possible.</p>
+        <p>My tools sit in the gaps that work leaves behind. Building a server means losing a surprising amount of time to things that ought to be instant: finding the right native and remembering what its parameters actually are, opening an archive just to see what is inside it, getting a debugger attached to a game that is already running. None of that is the interesting part of the job. Each project here removes one of those frictions and then gets out of the way.</p>
+        <p>The tools are small on purpose. A native reference should open faster than the documentation site it replaces; a debugger should attach without a separate window to babysit. I would rather ship something narrow that works every time than something broad that mostly does.</p>
+        <p>If you build for FiveM or RedM and something here is missing, wrong, or nearly useful, the <a href="https://discord.gg/H3aQQ7VCaY">Discord</a> is the fastest way to reach me.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="band band-soft" id="projects" aria-labelledby="projects-title">
     <div class="shell">
       <h2 id="projects-title">Public projects</h2>
