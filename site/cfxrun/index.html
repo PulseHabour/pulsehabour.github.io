@@ -7,125 +7,41 @@
 <meta name="description" content="CFX Run lets GitHub Copilot Chat execute JavaScript inside a running FiveM or RedM game client, for debugging and development.">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
-<style>
-:root {
-  --primary: #2a6c92;
-  --primary-deep: #1f5878;
-  --ink: #16262f;
-  --ink-2: #33474f;
-  --ink-mute: #5c6f77;
-  --canvas: #fbfaf7;
-  --canvas-soft: #f2f1eb;
-  --hairline: #e4e0d7;
-  --warn-bg: #fdf3e3;
-  --warn-border: #e6c68a;
-  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
-  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary: #86bede;
-    --primary-deep: #a8d3ea;
-    --ink: #eef2f2;
-    --ink-2: #c4cdd0;
-    --ink-mute: #97a4a9;
-    --canvas: #0e1417;
-    --canvas-soft: #121a1e;
-    --hairline: #232d32;
-    --warn-bg: #241d12;
-    --warn-border: #5c4726;
-  }
-}
-* { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
-body {
-  margin: 0;
-  background: var(--canvas);
-  color: var(--ink-2);
-  font-family: var(--sans);
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  overflow-wrap: break-word;
-}
-a { color: var(--primary); }
-a:hover { color: var(--primary-deep); }
-:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
-.shell { max-width: 46rem; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); }
-.back { display: inline-block; margin: 40px 0 0; font-size: 15px; text-decoration: none; }
-h1 {
-  margin: 24px 0 6px;
-  color: var(--ink);
-  font-size: clamp(32px, 5vw, 44px);
-  font-weight: 300;
-  letter-spacing: -.025em;
-  line-height: 1.1;
-}
-.lead { margin: 0 0 28px; color: var(--ink); font-size: 19px; line-height: 1.5; }
-h2 {
-  margin: 40px 0 10px;
-  color: var(--ink);
-  font-size: 20px;
-  font-weight: 400;
-  letter-spacing: -.015em;
-}
-ul { padding-left: 20px; }
-li { margin-bottom: 6px; }
-code { background: var(--canvas-soft); padding: 1px 5px; border-radius: 4px; font-family: var(--mono); font-size: 14px; }
-pre {
-  overflow-x: auto;
-  margin: 14px 0;
-  padding: 14px 16px;
-  border: 1px solid var(--hairline);
-  border-radius: 8px;
-  background: var(--canvas-soft);
-  font-family: var(--mono);
-  font-size: 13px;
-  line-height: 1.5;
-}
-pre code { background: none; padding: 0; font-size: inherit; }
-.links { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0 0; padding: 0; list-style: none; }
-.links a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 40px;
-  padding: 8px 18px;
-  border: 1px solid var(--primary);
-  border-radius: 9999px;
-  font-size: 15px;
-  text-decoration: none;
-}
-.links a.solid { background: var(--primary); border-color: var(--primary); color: var(--canvas); }
-.warn {
-  margin: 20px 0;
-  padding: 14px 16px;
-  border: 1px solid var(--warn-border);
-  border-radius: 8px;
-  background: var(--warn-bg);
-  font-size: 15px;
-}
-.warn strong { color: var(--ink); font-weight: 500; }
-.pair { display: grid; gap: 16px; margin: 16px 0 0; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-.pair div { padding: 18px 20px; border: 1px solid var(--hairline); border-radius: 10px; }
-.pair h3 { margin: 0 0 6px; color: var(--ink); font-size: 17px; font-weight: 400; }
-.pair p { margin: 0; font-size: 15px; }
-footer { margin: 56px 0 64px; padding-top: 24px; border-top: 1px solid var(--hairline); color: var(--ink-mute); font-size: 14px; }
-</style>
+<link rel="stylesheet" href="/assets/page.css">
 </head>
 <body>
-<div class="shell">
 
-<a class="back" href="/">&larr; pulsehabour.github.io</a>
+<header class="hero">
+  <svg class="mesh" viewBox="0 0 1200 360" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <defs><filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="90"/></filter></defs>
+    <g filter="url(#soft)">
+      <ellipse cx="110" cy="110" rx="300" ry="160" fill="var(--mesh-1)"/>
+      <ellipse cx="420" cy="60" rx="290" ry="140" fill="var(--mesh-2)"/>
+      <ellipse cx="700" cy="105" rx="300" ry="150" fill="var(--mesh-3)"/>
+      <ellipse cx="960" cy="60" rx="270" ry="140" fill="var(--mesh-4)"/>
+      <ellipse cx="1180" cy="140" rx="240" ry="130" fill="var(--mesh-5)"/>
+    </g>
+  </svg>
 
-<h1>CFX Run</h1>
-<p class="lead">Let GitHub Copilot Chat run code inside a live FiveM or RedM client, so you can ask it questions about the running game instead of guessing.</p>
+  <div class="shell">
+    <nav class="nav">
+      <a class="wordmark" href="/"><img class="avatar" src="/assets/avatar.jpg" alt="" width="30" height="30"><span>PulseHabour</span></a>
+      <a class="btn btn-primary" href="https://github.com/PulseHabour">GitHub</a>
+    </nav>
 
-<ul class="links">
-  <li><a class="solid" href="https://marketplace.visualstudio.com/items?itemName=PulseHabour.cfxrun">Install from the Marketplace</a></li>
-  <li><a href="https://github.com/PulseHabour/CfxRun-Resource">Server resource on GitHub</a></li>
-  <li><a href="https://discord.gg/H3aQQ7VCaY">Discord</a></li>
-</ul>
+    <div class="page-head">
+      <h1>CFX Run</h1>
+      <p class="lead">Let GitHub Copilot Chat run code inside a live FiveM or RedM client, so you can ask it questions about the running game instead of guessing.</p>
+      <ul class="links">
+        <li><a class="btn btn-primary" href="https://marketplace.visualstudio.com/items?itemName=PulseHabour.cfxrun">Install from the Marketplace</a></li>
+        <li><a class="btn btn-secondary" href="https://github.com/PulseHabour/CfxRun-Resource">Server resource</a></li>
+        <li><a class="btn btn-secondary" href="https://discord.gg/H3aQQ7VCaY">Discord</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<main class="shell">
 
 <h2>What it does</h2>
 <p>CFX Run registers tools with Copilot Chat that execute JavaScript in a sandboxed context inside the game client. Copilot can then read real state out of a running session rather than reasoning about code in the abstract.</p>
@@ -179,9 +95,9 @@ netsh interface portproxy add v4tov4 listenport=13172 ^
 <p>Pull requests and issues are welcome on the <a href="https://github.com/PulseHabour/CfxRun-Resource">resource repository</a>. For questions, the <a href="https://discord.gg/H3aQQ7VCaY">Discord</a> is the fastest route.</p>
 
 <footer>
-  Fan tooling only — not affiliated with Rockstar Games, Take-Two Interactive, or the Cfx.re project.
+  <p>Fan tooling only — not affiliated with Rockstar Games, Take-Two Interactive, or the Cfx.re project.</p>
 </footer>
 
-</div>
+</main>
 </body>
 </html>

@@ -7,84 +7,37 @@
 <meta name="description" content="What pulsehabour.github.io collects, what it doesn't, and how to change your mind.">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
-<style>
-:root {
-  --primary: #2a6c92;
-  --primary-deep: #1f5878;
-  --ink: #16262f;
-  --ink-2: #33474f;
-  --ink-mute: #5c6f77;
-  --canvas: #fbfaf7;
-  --canvas-soft: #f2f1eb;
-  --hairline: #e4e0d7;
-  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary: #86bede;
-    --primary-deep: #a8d3ea;
-    --ink: #eef2f2;
-    --ink-2: #c4cdd0;
-    --ink-mute: #97a4a9;
-    --canvas: #0e1417;
-    --canvas-soft: #121a1e;
-    --hairline: #232d32;
-  }
-}
-* { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
-body {
-  margin: 0;
-  background: var(--canvas);
-  color: var(--ink-2);
-  font-family: var(--sans);
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  overflow-wrap: break-word;
-}
-a { color: var(--primary); }
-a:hover { color: var(--primary-deep); }
-:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
-.shell { max-width: 46rem; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); }
-.back { display: inline-block; margin: 40px 0 0; font-size: 15px; text-decoration: none; }
-h1 {
-  margin: 24px 0 4px;
-  color: var(--ink);
-  font-size: clamp(32px, 5vw, 44px);
-  font-weight: 300;
-  letter-spacing: -.025em;
-  line-height: 1.1;
-}
-.updated { margin: 0 0 40px; color: var(--ink-mute); font-size: 14px; }
-h2 {
-  margin: 40px 0 10px;
-  color: var(--ink);
-  font-size: 20px;
-  font-weight: 400;
-  letter-spacing: -.015em;
-}
-p, li { font-size: 16px; }
-ul { padding-left: 20px; }
-li { margin-bottom: 6px; }
-.lead { color: var(--ink); font-size: 18px; }
-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
-th, td { padding: 10px 12px; border-bottom: 1px solid var(--hairline); text-align: left; vertical-align: top; }
-th { color: var(--ink); font-weight: 500; }
-code { background: var(--canvas-soft); padding: 1px 5px; border-radius: 4px; font-size: 14px; }
-footer { margin: 56px 0 64px; padding-top: 24px; border-top: 1px solid var(--hairline); color: var(--ink-mute); font-size: 14px; }
-</style>
+<link rel="stylesheet" href="/assets/page.css">
 </head>
 <body>
-<div class="shell">
 
-<a class="back" href="/">&larr; pulsehabour.github.io</a>
+<header class="hero">
+  <svg class="mesh" viewBox="0 0 1200 360" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <defs><filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="90"/></filter></defs>
+    <g filter="url(#soft)">
+      <ellipse cx="110" cy="110" rx="300" ry="160" fill="var(--mesh-1)"/>
+      <ellipse cx="420" cy="60" rx="290" ry="140" fill="var(--mesh-2)"/>
+      <ellipse cx="700" cy="105" rx="300" ry="150" fill="var(--mesh-3)"/>
+      <ellipse cx="960" cy="60" rx="270" ry="140" fill="var(--mesh-4)"/>
+      <ellipse cx="1180" cy="140" rx="240" ry="130" fill="var(--mesh-5)"/>
+    </g>
+  </svg>
 
-<h1>Privacy</h1>
-<p class="updated">Last updated 16 August 2026</p>
+  <div class="shell">
+    <nav class="nav">
+      <a class="wordmark" href="/"><img class="avatar" src="/assets/avatar.jpg" alt="" width="30" height="30"><span>PulseHabour</span></a>
+      <a class="btn btn-primary" href="https://github.com/PulseHabour">GitHub</a>
+    </nav>
 
-<p class="lead">This is a personal site with no accounts, no forms, and nothing to sign up for. By default it collects nothing about you at all.</p>
+    <div class="page-head">
+      <h1>Privacy</h1>
+      <p class="lead">This is a personal site with no accounts, no forms, and nothing to sign up for. By default it collects nothing about you at all.</p>
+      <p class="updated">Last updated 16 August 2026</p>
+    </div>
+  </div>
+</header>
+
+<main class="shell">
 
 <h2>If you don't consent, nothing is loaded</h2>
 <p>No analytics or advertising scripts run until you choose "Accept all" or "Analytics only" on the consent bar. If you decline, or simply ignore the bar, no third-party script is fetched, no cookie is set, and no request is made to Google from this site.</p>
@@ -128,9 +81,9 @@ footer { margin: 56px 0 64px; padding-top: 24px; border-top: 1px solid var(--hai
 <p>If what the site collects changes, this page changes with it and the date above is updated.</p>
 
 <footer>
-  Fan tooling only — not affiliated with Rockstar Games, Take-Two Interactive, or the Cfx.re project.
+  <p>Fan tooling only — not affiliated with Rockstar Games, Take-Two Interactive, or the Cfx.re project.</p>
 </footer>
 
-</div>
+</main>
 </body>
 </html>
