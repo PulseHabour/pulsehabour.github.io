@@ -6,7 +6,7 @@
 
 ## Public projects
 
-- [CFX Run](https://marketplace.visualstudio.com/items?itemName=PulseHabour.cfxrun): VS Code extension providing tools for remote debugging in Cfx games. The editor side of CfxRun.
+- [CFX Run](https://marketplace.visualstudio.com/items?itemName=PulseHabour.cfxrun): VS Code extension that lets GitHub Copilot Chat execute JavaScript inside a running FiveM or RedM client. The editor side of CfxRun.
 - [NativeCheck](https://github.com/PulseHabour/NativeCheck): Browser-based reference for looking up RAGE natives by name and reading their signatures.
 - [NativeViewer](https://github.com/PulseHabour/NativeViewer): Python companion for browsing native definitions on the desktop.
 - [CfxRun-Resource](https://github.com/PulseHabour/CfxRun-Resource): Server-side resource for CfxRun, letting players launch straight into a Cfx server.

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YARGE — an RPF explorer and world editor for RAGE-engine games</title>
+<meta name="description" content="YARGE is a cross-platform RPF explorer and world editor for RAGE-engine games, built clean-room from public format specifications. Pre-alpha.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="stylesheet" href="/assets/page.css">
+</head>
+<body>
+
+<header class="hero">
+  <svg class="mesh" viewBox="0 0 1200 360" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <defs><filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="90"/></filter></defs>
+    <g filter="url(#soft)">
+      <ellipse cx="110" cy="110" rx="300" ry="160" fill="var(--mesh-1)"/>
+      <ellipse cx="420" cy="60" rx="290" ry="140" fill="var(--mesh-2)"/>
+      <ellipse cx="700" cy="105" rx="300" ry="150" fill="var(--mesh-3)"/>
+      <ellipse cx="960" cy="60" rx="270" ry="140" fill="var(--mesh-4)"/>
+      <ellipse cx="1180" cy="140" rx="240" ry="130" fill="var(--mesh-5)"/>
+    </g>
+  </svg>
+
+  <div class="shell">
+    <nav class="nav">
+      <a class="wordmark" href="/"><img class="avatar" src="/assets/avatar.jpg" alt="" width="30" height="30"><span>PulseHabour</span></a>
+      <a class="btn btn-primary" href="https://github.com/PulseHabour">GitHub</a>
+    </nav>
+
+    <div class="page-head">
+      <h1>YARGE</h1>
+      <p class="lead">Yet Another RAGE Editor &mdash; a cross-platform RPF explorer and world editor for RAGE-engine games, built to stay responsive on archives that make other tools hang.</p>
+      <p class="updated">Pre-alpha &middot; no public build yet</p>
+    </div>
+  </div>
+</header>
+
+<main class="shell">
+
+<div class="warn">
+  <p><strong>This is not released.</strong> YARGE is in pre-alpha, with the first milestone &mdash; mount, browse, preview, extract &mdash; still in progress. There is no download and no public repository. The <a href="https://discord.gg/H3aQQ7VCaY">Discord</a> is where progress gets posted.</p>
+</div>
+
+<h2>The explorer that never freezes</h2>
+<p>A RAGE game install is a tree of nested archives holding hundreds of thousands of entries. Existing tools can read it, but they tend to do that work on the interface thread, so the window locks up for seconds at a time on anything large.</p>
+<p>The first release goal is narrow and deliberately unglamorous: mount an install, browse the entire virtual archive tree instantly, search it by name or hash, and preview or extract anything &mdash; with every long operation off the UI thread. Deep editors come later. A search that returns immediately, on an archive that normally stalls, is the whole demo.</p>
+
+<h2>Files that describe themselves</h2>
+<p>YARGE identifies files by the markup inside them rather than trusting the extension, which is what makes a tree of unknown blobs browsable in the first place. Anything it does not recognise can be taught to it from the <strong>File types</strong> form, so an unfamiliar format is a definition to fill in rather than a wall.</p>
+
+<h2>Viewing the world</h2>
+<p>Beyond the explorer, <strong>View world</strong> opens a first slice of the map: every archetype definition in the install read into a single table, every placement resolved against it, and the geometry near a free-flying camera streamed in and out under a memory budget.</p>
+<p>It is honest about being early. The view is untextured, it draws only what the archetype table manages to resolve, and it states on screen how much of the install that actually represents rather than quietly showing you a partial world.</p>
+
+<h2>Your install, your keys</h2>
+<p>YARGE reads the keys it needs from your own game installation, at runtime. It ships no game assets, no keys, and no trade dress, and it is intended for single-player and Cfx.re-platform content.</p>
+
+<h2>Written clean-room</h2>
+<p>The engine-facing code is written from public format specifications, verified against bytes from a real install. It contains no code from CodeWalker, CodeX, or any other tool &mdash; those may be studied, but their source never enters YARGE. Format facts are recorded as specifications first, and the implementation follows from them.</p>
+
+<h2>Platforms</h2>
+<p>Windows and macOS, from one codebase.</p>
+
+<h2>Following along</h2>
+<p>Progress, screenshots, and eventually a beta go to the <a href="https://discord.gg/H3aQQ7VCaY">Discord</a>. There is nothing to install yet.</p>
+
+<footer>
+  <p>Unofficial fan tool. Not affiliated with, endorsed by, or associated with Rockstar Games, Take-Two Interactive, or RAGE Multiplayer.</p>
+</footer>
+
+</main>
+</body>
+</html>
