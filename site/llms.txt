@@ -4,16 +4,23 @@
 > file format explorers, native reference tools, and developer utilities. Fan tooling
 > only — not affiliated with Rockstar Games, Take-Two Interactive, or the Cfx.re project.
 
+## Pages
+
+- [Home](https://pulsehabour.github.io/): what the tools are for and what they cover.
+- [CFX Run](https://pulsehabour.github.io/cfxrun/): what the extension does, how the two halves fit together, and how to debug a client on another machine.
+- [YARGE](https://pulsehabour.github.io/yarge/): the RPF explorer and world editor in progress.
+- [Privacy](https://pulsehabour.github.io/privacy/): what the site collects, which is nothing unless you consent.
+
 ## Public projects
 
-- [CFX Run](https://marketplace.visualstudio.com/items?itemName=PulseHabour.cfxrun): VS Code extension that lets GitHub Copilot Chat execute JavaScript inside a running FiveM or RedM client. The editor side of CfxRun.
-- [NativeCheck](https://github.com/PulseHabour/NativeCheck): Browser-based reference for looking up RAGE natives by name and reading their signatures.
+- [CFX Run](https://pulsehabour.github.io/cfxrun/): VS Code extension that lets GitHub Copilot Chat execute JavaScript inside a running FiveM or RedM client, for debugging a live session. Published on the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=PulseHabour.cfxrun). Development tool only — it can execute any native, so it should not run on a live server.
+- [CfxRun-Resource](https://github.com/PulseHabour/CfxRun-Resource): the server side of CFX Run, exposing the execution endpoint the extension calls. MIT licensed.
+- [NativeCheck](https://github.com/PulseHabour/NativeCheck): browser-based reference for looking up RAGE natives by name and reading their signatures.
 - [NativeViewer](https://github.com/PulseHabour/NativeViewer): Python companion for browsing native definitions on the desktop.
-- [CfxRun-Resource](https://github.com/PulseHabour/CfxRun-Resource): Server-side resource for CfxRun, letting players launch straight into a Cfx server.
 
 ## In development
 
-- YARGE (Yet Another RAGE Editor): cross-platform RPF explorer and world editor for RAGE-engine games. Pre-alpha, not yet public.
+- [YARGE](https://pulsehabour.github.io/yarge/) (Yet Another RAGE Editor): cross-platform RPF explorer and world editor for RAGE-engine games, aimed at browsing and searching large archives without freezing. Pre-alpha — no public build or repository yet.
 - FiveM Stats: server statistics tracking, built on Node and Postgres. Not yet public.
 - LuminHub: small Python service, TLS end to end. Not yet public.
 
