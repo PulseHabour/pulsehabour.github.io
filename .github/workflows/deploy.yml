@@ -28,3 +28,37 @@ jobs:
           path: site
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      # Tell IndexNow (Bing, Yandex, Seznam, Naver — not Google) that the site
+      # changed. The URL list is read from sitemap.xml so new pages are picked
+      # up automatically. The key is public by design: it is served at
+      # site/<key>.txt, which is how ownership is proved.
+      - name: Notify IndexNow
+        continue-on-error: true
+        run: |
+          set -uo pipefail
+          KEY=d25966a8066641cb91c4121d8dc7fc02
+          python3 - "$KEY" > payload.json <<'PY'
+          import json, pathlib, re, sys
+          key = sys.argv[1]
+          host = "pulsehabour.github.io"
+          locs = re.findall(r"<loc>([^<]+)</loc>", pathlib.Path("site/sitemap.xml").read_text())
+          if not locs:
+              raise SystemExit("no <loc> entries found in site/sitemap.xml")
+          print(json.dumps({
+              "host": host,
+              "key": key,
+              "keyLocation": f"https://{host}/{key}.txt",
+              "urlList": locs,
+          }))
+          PY
+          echo "Submitting $(python3 -c 'import json;print(len(json.load(open("payload.json"))["urlList"]))') URLs:"
+          python3 -c 'import json;[print(" -",u) for u in json.load(open("payload.json"))["urlList"]]'
+          CODE=$(curl -sS -o /dev/null -w '%{http_code}' -X POST "https://api.indexnow.org/IndexNow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            --data @payload.json)
+          echo "IndexNow responded HTTP $CODE"
+          case "$CODE" in
+            200|202) echo "Accepted." ;;
+            *) echo "::warning::IndexNow submission returned HTTP $CODE (deploy itself was fine)" ;;
+          esac
